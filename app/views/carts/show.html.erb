@@ -1,0 +1,16 @@
+<% if notice %>
+  <aside id="notice"><%= notice %></aside>
+<% end %>
+
+<h2>Pragmatic Cart</h2>
+<ul class="cart">
+  <% @cart.line_items.each do |item| %>
+    <li>
+      <h2><%= item.product.title %></h2>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Continue Shopping", store_path %>
+|
+<%= link_to 'Back', carts_path %>
