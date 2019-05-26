@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 # create_table "carts", force: :cascade do |t|
 #   t.datetime "created_at", null: false
 #   t.datetime "updated_at", null: false
 # end
-
 class Cart < ApplicationRecord
   has_many :line_items, dependent: :destroy
 
@@ -23,6 +24,6 @@ class Cart < ApplicationRecord
 
   def total_price
     # total of all products
-    line_items.sum { |line_item| line_item.total_price }
+    line_items.sum(&:total_price)
   end
 end
