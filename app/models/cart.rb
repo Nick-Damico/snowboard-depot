@@ -1,3 +1,8 @@
+# create_table "carts", force: :cascade do |t|
+#   t.datetime "created_at", null: false
+#   t.datetime "updated_at", null: false
+# end
+
 class Cart < ApplicationRecord
   has_many :line_items, dependent: :destroy
 

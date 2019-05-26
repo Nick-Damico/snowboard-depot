@@ -1,10 +1,9 @@
 article
-  = if notice
-    aside id="notice" = notice
-
+  - if !notice.nil?
+    aside#notice = notice
   h2 Your Cart
   table
-    = render partial: 'line_items/line_item', collection: cart.line_items
+    == render partial: 'line_items/line_item', collection: cart.line_items
     tfoot
       tr
         th colspan="2" Total:
