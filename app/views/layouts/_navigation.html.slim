@@ -1,0 +1,17 @@
+nav.side_nav
+  div.carts id="cart"
+
+    = render(@cart)
+
+  ul
+    li
+      a href="/" Home
+    li
+      a href="/questions" Questions
+
+    li
+      a href="/news" News
+    li
+      a href="/contact" Contact
+    li
+      a href="/carts/#{@cart.id}" View Cart
