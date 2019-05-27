@@ -1,7 +1,7 @@
 - if notice
   aside id="notice" = notice
 
-h1 Your Pragmatic Catalog | View count = @counter
+h1 Your Pragmatic Catalog | View count #{@counter}
 
 ul.catalog
   - cache @products do

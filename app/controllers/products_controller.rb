@@ -57,10 +57,11 @@ class ProductsController < ApplicationController
     respond_to do |format|
       if @product.destroy
         format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+        format.json { render head: :no_content }
       else
-        format.html { redirect_to products_url, notice: "Product wasn't destroyed." }
+        format.html { redirect_to products_url, notice: "Product can't be destroyed." }
+        format.json { render json: @product.errors, status: :forbidden }
       end
-      format.json { head :no_content }
     end
   end
 
