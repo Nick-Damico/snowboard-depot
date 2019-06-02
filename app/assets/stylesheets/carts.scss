@@ -13,7 +13,7 @@
     white-space: nowrap;
   }
   td.quantity::after {
-    content: "x -";
+    content: '';
   }
   td.price {
     font-weight: bold;
