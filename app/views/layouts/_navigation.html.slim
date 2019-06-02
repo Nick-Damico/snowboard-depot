@@ -1,15 +1,19 @@
 nav.side_nav
   div.carts id="cart"
-    == render(@cart)
+    - if @cart
+      == render(@cart)
 
   ul
     li
       a href="/" Home
+    li
+      a href="#{products_path}" Products
     li
       a href="/questions" Questions
     li
       a href="/news" News
     li
       a href="/contact" Contact
-    li
-      a href="/carts/#{@cart.id}" View Cart
+    - if @cart
+      li
+        a href="/carts/#{@cart.id}" View Cart
