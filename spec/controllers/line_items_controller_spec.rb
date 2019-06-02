@@ -15,4 +15,12 @@ RSpec.describe LineItemsController, type: :controller do
       expect(response).to have_http_status '201'
     end
   end
+
+  describe '#update' do
+    it 'should update a line_item' do
+      line_item = create(:line_item)
+      patch :update, params: {id: line_item.id, line_item: { product_id: line_item.product_id } }
+      expect(response).to redirect_to line_item_url(line_item)
+    end
+  end
 end
