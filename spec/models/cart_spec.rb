@@ -9,7 +9,8 @@ RSpec.describe Cart, type: :model do
       product = create(:product)
       cart.add_product(product)
       cart.save!
-      expect(cart.line_items.where(product_id: product.id).count).to eq(1)
+
+      expect(cart.line_items.count).to eq(1)
     end
   end
 end
