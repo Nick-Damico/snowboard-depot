@@ -15,6 +15,12 @@ RSpec.describe LineItemsController, type: :controller do
       post :create, params: { product_id: product.id }
       expect(response).to have_http_status '201'
     end
+
+    it 'should create a line_item via ajax' do
+      expect{
+        post :create, params: { product_id: product.id }, xhr: true
+      }.to change(LineItem, :count).by(1)
+    end
   end
 
   describe '#update' do
