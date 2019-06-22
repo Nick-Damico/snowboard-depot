@@ -1,7 +1,6 @@
 nav.side_nav
   div.carts id="cart"
-    - if @cart
-      == render(@cart)
+    = render_if @cart && @cart.line_items.any?, @cart
 
   ul
     li
