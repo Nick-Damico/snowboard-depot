@@ -38,7 +38,7 @@ class LineItemsController < ApplicationController
           notice: 'Line Item was successfully created.'
         }
         format.json { render :show, status: :created, location: @line_item }
-        format.js
+        format.js { @current_item = @line_item }
       else
         format.html { render :new }
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
