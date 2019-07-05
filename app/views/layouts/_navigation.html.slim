@@ -1,7 +1,6 @@
 nav.side_nav
   div.carts id="cart"
-    = render_if @cart && @cart.line_items.any?, @cart
-
+    = render partial: 'carts/cart', locals: { cart: @cart } if @cart && @cart.line_items.any?
   ul
     li
       a href="/" Home
