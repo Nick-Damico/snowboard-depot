@@ -17,4 +17,8 @@ class LineItem < ApplicationRecord
   def total_price
     product.price * quantity
   end
+
+  def decrease_quantity
+    self.update_attribute(:quantity, self.quantity - 1)
+  end
 end
