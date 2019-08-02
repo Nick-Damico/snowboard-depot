@@ -78,10 +78,12 @@ class LineItemsController < ApplicationController
 
   def update_count
     @line_item.decrease_quantity
-    if @line_item.quantity <= 0
-      @line_item.delete
+    @line_item.delete if @line_item.quantity <= 0
+
+    respond_to do |format|
+      format.html { redirect_to store_url }
+      format.js
     end
-    redirect_to store_url
   end
 
   private
