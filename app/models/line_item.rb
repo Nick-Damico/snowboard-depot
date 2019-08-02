@@ -14,11 +14,22 @@ class LineItem < ApplicationRecord
   belongs_to :product
   belongs_to :cart
 
+  after_update :delete_item, if: :quantity_zero?
+
   def total_price
     product.price * quantity
   end
 
   def decrease_quantity
     self.update_attribute(:quantity, self.quantity - 1)
+  end
+
+  private
+  def quantity_zero?
+    quantity <= 0
+  end
+
+  def delete_item
+    self.destroy
   end
 end

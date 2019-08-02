@@ -49,16 +49,17 @@ class LineItemsController < ApplicationController
   # PATCH/PUT /line_items/1
   # PATCH/PUT /line_items/1.json
   def update
-
     respond_to do |format|
       if @line_item.update(line_item_params)
         format.html {
           redirect_to @line_item, notice: 'Order was updated.'
         }
         format.json { render :show, status: :ok, location: @line_item }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
+        format.js { console.log("shit went wrong")}
       end
     end
   end
@@ -73,16 +74,6 @@ class LineItemsController < ApplicationController
         notice: 'Item was successfully removed from cart.'
       }
       format.json { head :no_content }
-    end
-  end
-
-  def update_count
-    @line_item.decrease_quantity
-    @line_item.delete if @line_item.quantity <= 0
-
-    respond_to do |format|
-      format.html { redirect_to store_url }
-      format.js
     end
   end
 

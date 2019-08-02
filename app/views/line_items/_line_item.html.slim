@@ -2,4 +2,9 @@ tr data-id="#{line_item.id}" class=(line_item == @current_item ? 'line-item-high
   td.quantity #{line_item.quantity}
   td #{line_item.product.title}
   td.price #{number_to_currency(line_item.total_price)}
-  td. = button_to '-', update_count_path(line_item), method: :patch, remote: true
+  td
+    = form_for(line_item, remote: true) do |f|
+      = f.hidden_field :quantity, value: line_item.quantity - 1
+      = f.submit '-'
+    /  = f.submit '-', update_count_path(line_item)
+  / td. = button_to '-', update_count_path(line_item), method: :patch, remote: true
