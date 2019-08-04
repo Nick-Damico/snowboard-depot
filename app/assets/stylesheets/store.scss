@@ -21,12 +21,18 @@
         content: " ";
         display: block;
       }
+
+      &.highlight {
+        background-color: #8f8;
+      }
+
       img {
         float: left;
         padding: 1em;
         margin-right: 1em;
         margin-bottom: 1em;
         box-shadow: 0.176em 0.176em 0.354em 0px rgba(0,0,0,0.75);
+        background-color: white;
       }
 //
       .price {

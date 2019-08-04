@@ -8,3 +8,6 @@ App.products = App.cable.subscriptions.create "ProductsChannel",
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
     document.querySelector("main.store").innerHTML = data.html
+    # Highlight updated item
+    item = document.querySelector('[data-item="' + data.product_id + '"')
+    item.classList.add('highlight')
