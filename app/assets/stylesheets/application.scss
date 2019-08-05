@@ -15,17 +15,23 @@
  *= require_tree .
  *= require_self
  */
+:root {
+  --site-light-green: #282;
+  --site-dark-green: #882;
+  --bg-default-notice: #ffb;
+}
 
 body {
   margin: 0;
   padding: 0;
 }
+
 header.main {
   text-align: center; // center on mobile
   @media (min-width: 30em) {
     text-align: left; // left align on desktop
   }
-  background: #282;
+  background: var(--site-light-green);
   margin: 0;
   h1 {
     display: none;
@@ -33,16 +39,16 @@ header.main {
 }
 
 .notice, #notice {
-  background: #ffb;
+  background: var(--bg-default-notice);
   border-radius: 0.5em;
-  border: solid 0.177em #882;
-  color: #882;
+  border: solid 0.177em var(--site-dark-green);
+  color: var(--site-dark-green);
   font-weight: bold;
   margin-bottom: 1em;
   padding: 1em 1.414em;
   text-align: center;
 }
-.content {
+.site-content {
   margin: 0;
   padding: 0;
 
@@ -51,6 +57,7 @@ header.main {
   flex-direction: column; // mobile is horizontally laid out
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
+  min-height: calc(100vh - 131px);
 
   @media (min-width: 30em) {
     flex-direction: row;  // desktop is vertically laid out
@@ -106,4 +113,13 @@ header.main {
   main {
     padding: 0.5em;
   }
+}
+
+.site-footer {
+  align-items: center;
+  background-color: var(--site-light-green);
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
+  color: white;
 }

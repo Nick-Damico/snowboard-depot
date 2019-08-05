@@ -8,9 +8,10 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
-  body
+  body.site
     == render 'layouts/header'
-    section.content
+    section.site-content
       == render 'layouts/navigation'
       main class="#{ controller.controller_name }"
         == yield
+    == render 'layouts/footer'
