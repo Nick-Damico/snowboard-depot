@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :orders
+  get '/orders/new', to: 'orders#create', as: 'checkout'
   resources :line_items
   resources :carts
   root 'store#index', as: 'store_index'

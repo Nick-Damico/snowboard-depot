@@ -6,5 +6,4 @@ class Order < ApplicationRecord
     'Credit Card' => 1,
     'Purchase order' => 2
   }
-  
 end

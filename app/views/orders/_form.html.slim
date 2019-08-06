@@ -1,4 +1,4 @@
-= form_for @order do |f|
+= form_with(model: @order, local: true) do |f|
   - if @order.errors.any?
     #error_explanation
       h2 = "#{pluralize(@order.errors.count, "error")} prohibited this order from being saved:"
@@ -8,14 +8,14 @@
 
   .field
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, id: :order_name, size: 40
   .field
     = f.label :address
-    = f.text_area :address
+    = f.text_area :address, id: :order_address, rows: 3, cols: 40
   .field
     = f.label :email
-    = f.text_field :email
+    = f.text_field :email, id: :order_email, size: 40
   .field
     = f.label :pay_type
-    = f.number_field :pay_type
+    = f.select :pay_type, Order.pay_types.keys, id: :order_pay_type, prompt: 'Select a payment method'
   .actions = f.submit
