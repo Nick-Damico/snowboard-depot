@@ -1,0 +1,30 @@
+h2 Who bought #{@product.title.titleize}
+
+p Last Updated on: #{@latest_order.try(:updated_at)}
+
+- @product.orders.each do |order|
+  div.order-summary
+    h4 Order #{order.id}
+    table.order-table
+      thead
+        tr
+          th Product
+          th Quantity
+          th Total Price
+      tbody
+        - order.line_items.each do |item|
+          tr
+            td #{item.product.title}
+            td #{item.quantity}
+            td #{number_to_currency item.total_price}
+      tfoot
+        tr
+          th colspan="2" Total:
+          th #{number_to_currency order.line_items.map(&:total_price).sum}
+    p
+     | <b>Paid by:</b> #{order.pay_type}
+     br
+     | <b>Shipped to:</b> #{order.address}
+     br
+     | #{order.name} -
+     a.order-email href="mailto:#{order.email}" #{order.email}

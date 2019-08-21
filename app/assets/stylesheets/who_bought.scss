@@ -1,0 +1,32 @@
+.order-summary {
+  border: 1px solid lightgrey;
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+.order-table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.order-table th {
+  text-align: left;
+  background-color: var(--site-light-green);
+  color: white;
+}
+
+.order-table td, .order-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.order-table tr:nth-child(even){background-color: #f2f2f2;}
+
+.order-table tr:hover {background-color: #ddd;}
+
+a.order-email {
+  color: black;
+  &:hover {
+    background: none !important;
+  }
+}
