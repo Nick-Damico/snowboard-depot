@@ -11,7 +11,8 @@
 #   t.index ["product_id"], name: "index_line_items_on_product_id"
 # end
 class LineItem < ApplicationRecord
-  belongs_to :product
+  belongs_to :order, optional: true
+  belongs_to :product, optional: true
   belongs_to :cart
 
   after_update :delete_item, if: :quantity_zero?
