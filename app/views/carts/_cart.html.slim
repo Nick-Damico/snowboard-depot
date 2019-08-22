@@ -10,4 +10,4 @@ article
         td.price = number_to_currency(cart.total_price)
   div.actions
     = button_to 'Empty cart', cart, method: :delete, remote: true, data: { confirm: 'Are you sure?' }
-    = link_to 'Checkout', checkout_path, class: 'checkout', data: { disable_with: 'Processing Checkout...' }
+    = button_to 'Checkout', checkout_path, method: :get, class: 'checkout', remote: true

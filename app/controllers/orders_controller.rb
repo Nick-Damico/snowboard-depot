@@ -50,6 +50,7 @@ class OrdersController < ApplicationController
       if @order.update(order_params)
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @order.errors, status: :unprocessable_entity }
