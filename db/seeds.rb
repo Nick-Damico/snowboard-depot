@@ -21,7 +21,7 @@ Product.create!(title: 'Rails, Angular, Postgres, and Bootstrap',
       and learn to use these technologies effectively in a Ruby on Rails
       environment.
       </p>},
-  image_url: 'dcbang.jpg',    
+  image_url: 'dcbang.jpg',
   price: 45.00)
 # . . .
 Product.create!(title: 'Seven Mobile Apps in Seven Weeks',
@@ -41,7 +41,7 @@ Product.create!(title: 'Seven Mobile Apps in Seven Weeks',
 Product.create!(title: 'Ruby Performance Optimization',
   description:
     %{<p>
-      <em>Why Ruby Is Slow, and How to Fix It</em> 
+      <em>Why Ruby Is Slow, and How to Fix It</em>
       You don’t have to accept slow Ruby or Rails performance. In this
       comprehensive guide to Ruby optimization, you’ll learn how to write
       faster Ruby code—but that’s just the beginning. See exactly what makes
@@ -53,3 +53,8 @@ Product.create!(title: 'Ruby Performance Optimization',
       </p>},
   image_url: 'adrpo.jpg',
   price: 46.00)
+
+puts 'Seeding Pay Types'
+['Check', 'Credit Card', 'Purchase Order'].each do |pay_type|
+  PayType.create!(name: pay_type)
+end

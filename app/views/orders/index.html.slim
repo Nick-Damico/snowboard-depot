@@ -17,7 +17,7 @@ table
         td = order.name
         td = order.address
         td = order.email
-        td = order.pay_type
+        td = order.pay_type.try(:name)
         td = link_to 'Show', order
         td = link_to 'Edit', edit_order_path(order)
         td = link_to 'Destroy', order, data: { confirm: 'Are you sure?' }, method: :delete

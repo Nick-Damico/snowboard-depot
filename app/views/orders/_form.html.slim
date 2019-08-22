@@ -18,6 +18,6 @@ section.depot_form
       = f.label :email
       = f.text_field :email, id: :order_email, size: 40
     .field
-      = f.label :pay_type
-      = f.select :pay_type, Order.pay_types.keys, id: :order_pay_type, prompt: 'Select a payment method'
+      = f.label :pay_type_id
+      = f.collection_select :pay_type_id, PayType.all, :id, :name, prompt: 'Select a payment method'
     .actions = f.submit 'Place Order'

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pay_types
   resources :orders
   get '/orders/new', to: 'orders#create', as: 'checkout'
   resources :line_items
