@@ -1,3 +1,4 @@
-  == render partial: 'form', locals: { order: @order }
+  == render 'form'
 
   = link_to 'Back', orders_path
+  = javascript_pack_tag 'pay_type'

@@ -1,11 +1,11 @@
 section.depot_form
   h1 Please Enter Your Details
-  = form_with(model: order, local: true) do |f|
-    - if order.errors.any?
+  = form_with(model: @order, local: true) do |f|
+    - if @order.errors.any?
       #error_explanation
-        h2 = "#{pluralize(order.errors.count, "error")} prohibited this order from being saved:"
+        h2 = "#{pluralize(@order.errors.count, "error")} prohibited this order from being saved:"
         ul
-          - order.errors.full_messages.each do |message|
+          - @order.errors.full_messages.each do |message|
             li = message
 
     .field
@@ -17,7 +17,6 @@ section.depot_form
     .field
       = f.label :email
       = f.text_field :email, id: :order_email, size: 40
-    .field
-      = f.label :pay_type_id
-      = f.collection_select :pay_type_id, PayType.all, :id, :name, prompt: 'Select a payment method'
+    div id="pay-type-component"
+
     .actions = f.submit 'Place Order'
