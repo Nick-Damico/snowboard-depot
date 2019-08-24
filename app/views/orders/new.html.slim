@@ -1,4 +1,7 @@
-  == render 'form'
+== render 'form'
 
-  = link_to 'Back', orders_path
-  = javascript_pack_tag 'pay_type'
+= link_to 'Back', orders_path
+
+
+// Loads only the JavaScript we need for this form.
+= javascript_pack_tag 'pay_type'

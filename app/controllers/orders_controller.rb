@@ -58,6 +58,18 @@ class OrdersController < ApplicationController
     end
   end
 
+  def pay_type_params
+    if order_params[:pay_type] == 1
+      params.require(:order).permit(:credit_card_number, :expiration_date)
+    elsif order_params[:pay_type] == 2
+      params.require(:order).permit(:routing_number, :account_number)
+    elsif order_params[:pay_type] == 3
+      params.require(:order).permit(:po_number)
+    else
+      {}
+    end
+  end
+
   # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy
