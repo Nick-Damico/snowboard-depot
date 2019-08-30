@@ -1,2 +1,10 @@
-h1 Order#received
-p = @greeting + ", find me in app/views/order_mailer/received.html.slim"
+h3 Pragmatic Order Shipped
+
+p this is just to let you know that we've shipped your recent order:
+
+table
+  tr
+    th Qty
+    th Description
+    th Price
+  = render partial: "line_items/line_item_simple", collection: @order.line_items, as: :line_item

@@ -57,6 +57,7 @@ group :development do
   gem 'rspec-rails', '~> 3.8', '>= 3.8.2'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem "letter_opener"
 end
 
 group :test do
