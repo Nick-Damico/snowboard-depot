@@ -1,6 +1,6 @@
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
-import PayType from '../pay_type.vue'
+import PayType from '../PayType/pay_type.vue'
 
 Vue.use(TurbolinksAdapter)
 
