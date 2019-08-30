@@ -5,11 +5,11 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+## Ruby version
 - ruby 2.3.3
 - rails 5.2.3
 
-* Package dependencies
+## Package dependencies
 - "@babel/preset-react": "^7.0.0",
 - "@rails/webpacker": "^4.0.7",
 - "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
@@ -22,10 +22,14 @@ Things you may want to cover:
 - "vue-turbolinks": "^2.0.4",
 - "yarn": "^1.17.3"
 
-* Development
-- Start webpacker hotreload `./bin/webpack-dev-server`
+# Development Setup
+1. `bundle install`
+2. yarn install
+3. Start webpacker hotreload `./bin/webpack-dev-server`
+4. Start Rails server `rails server`
 
-- Start Rails server `rails server`
+# How to run the test suite
+- rspec
 
 * Configuration
 
@@ -33,8 +37,6 @@ Things you may want to cover:
 
 * Database initialization
 
-* How to run the test suite
-- rspec
 
 * Services (job queues, cache servers, search engines, etc.)
 
