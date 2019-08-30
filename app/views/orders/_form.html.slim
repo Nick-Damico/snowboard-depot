@@ -19,6 +19,7 @@ section.depot_form
       = f.text_field :email, id: :order_email, size: 40
 
     // Target Element to mount React Component
-    div id="pay-type-component"
+    div id="paytype"
+      pay-type
 
     .actions = f.submit 'Place Order'
