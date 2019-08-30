@@ -1,6 +1,6 @@
-<template>
+<template lang="html">
   <div id="app">
-    <p>PayType Select</p>
+    Select A Payment Type
   </div>
 </template>
 
@@ -9,7 +9,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="css" scoped>
 p {
   font-size: 2em;
   text-align: center;

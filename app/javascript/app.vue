@@ -1,11 +1,16 @@
 <template>
   <div id="app">
-    <p>PayType Select</p>
+    <p>{{ message }}</p>
   </div>
 </template>
 
 <script>
 export default {
+  data: function () {
+    return {
+      message: "Hello Vue!"
+    }
+  }
 }
 </script>
 

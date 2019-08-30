@@ -7,7 +7,7 @@
 
 // import Vue from 'vue'
 // import App from '../app.vue'
-
+//
 // document.addEventListener('DOMContentLoaded', () => {
 //   const app = new Vue({
 //     render: h => h(App)
@@ -55,13 +55,18 @@
 //
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
-import PayType from '../app.vue'
+import App from '../app.vue'
 
 Vue.use(TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
-    el: '#paytype',
-    components: { PayType }
+    el: '#hello',
+    data: () => {
+      return {
+        message: "Can you say hello?"
+      }
+    },
+    components: { App }
   })
 })
