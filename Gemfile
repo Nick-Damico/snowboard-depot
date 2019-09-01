@@ -44,6 +44,7 @@ group :development, :test do
   gem 'faker', '~> 1.9', '>= 1.9.3'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'shoulda-matchers'
+  gem 'capybara'
   gem 'pry'
 end
 
@@ -55,7 +56,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rspec-rails', '~> 3.8', '>= 3.8.2'
-  gem 'capybara'
   gem 'selenium-webdriver'
   gem "letter_opener"
 end
