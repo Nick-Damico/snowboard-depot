@@ -15,7 +15,7 @@ RSpec.describe 'Orders', type: :feature do
     expect(page).to have_content('Total: $45.00')
   end
 
-  scenario 'user selects check as pay type', js: true do
+  scenario 'user selects check as payment type', js: true do
     visit root_path
 
     first('.catalog li').click_on('Add to Cart')
@@ -30,5 +30,41 @@ RSpec.describe 'Orders', type: :feature do
     assert_no_selector '#order_routing_number'
     select('Check', from: 'pay_type')
     assert_selector '#order_routing_number'
+  end
+
+  scenario 'user selects credit card as payment type', js: true do
+    visit root_path
+
+    first('.catalog li').click_on('Add to Cart')
+    expect(page).to have_content('Total: $45.00')
+    click_button('Checkout')
+    expect(page).to have_current_path(new_order_path)
+    expect(page).to have_content('Please Enter Your Details')
+
+    fill_in 'order_name', with: 'Johnny Appleseed'
+    fill_in 'order_address', with: '123 Main Street'
+    fill_in 'order_email', with: 'johnny_apple@trees.com'
+    assert_no_selector '#order_credit_card_number'
+    assert_no_selector '#order_expiration_date'
+    select('Credit Card', from: 'pay_type')
+    assert_selector '#order_credit_card_number'
+    assert_selector '#order_expiration_date'
+  end
+
+  scenario 'user selects PO as payment type', js: true do
+    visit root_path
+
+    first('.catalog li').click_on('Add to Cart')
+    expect(page).to have_content('Total: $45.00')
+    click_button('Checkout')
+    expect(page).to have_current_path(new_order_path)
+    expect(page).to have_content('Please Enter Your Details')
+
+    fill_in 'order_name', with: 'Johnny Appleseed'
+    fill_in 'order_address', with: '123 Main Street'
+    fill_in 'order_email', with: 'johnny_apple@trees.com'
+    assert_no_selector '#order_po_number'
+    select('Purchase Order', from: 'pay_type')
+    assert_selector '#order_po_number'
   end
 end

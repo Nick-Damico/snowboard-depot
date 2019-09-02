@@ -11,7 +11,7 @@
 
     <div class="field cc-exp__field">
       <label for="order_expiration_date">Exp Date</label>
-      <select name='expireMM' id='expireMM'>
+      <select name='expireMM' id='order_expiration_date'>
           <option value=''>Month</option>
           <option value='01'>01 - January</option>
           <option value='02'>02 - February</option>
