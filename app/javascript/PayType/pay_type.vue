@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="app">
-    <select @change="selectType($event.target.value)" class="pay-type" name="order[pay_type_id]">
+    <select @change="selectType($event.target.value)" id="pay_type" class="pay-type" name="order[pay_type_id]">
       <option value="">Select A Pay Type</option>
       <option value="1">Check</option>
       <option value="2">Credit Card</option>
