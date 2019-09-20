@@ -1,6 +1,7 @@
-h3 Pragmatic Order Shipped
+h3 Pragmatic Order Received
 
-p this is just to let you know that we've shipped your recent order:
+p Thank you for placing an order with The Pragmatic BookShelf. <br />
+  This email is to notify you that we received your order for the following items:
 
 table
   tr
@@ -8,3 +9,5 @@ table
     th Description
     th Price
   = render partial: "line_items/line_item_simple", collection: @order.line_items, as: :line_item
+
+p You will receive an notification email when your items have shipped.
