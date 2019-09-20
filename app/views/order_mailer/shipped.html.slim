@@ -1,2 +1,13 @@
-h1 Order#shipped
-p = @greeting + ", find me in app/views/order_mailer/shipped.html.slim"
+h3 Your recent Pragmatic Order has Shipped
+
+p Thank you for trust The Pragmatic BookShelf with all our educational supply needs. <br />
+  This email is to notify you that we recently shipped your order:
+
+table
+  tr
+    th Qty
+    th Description
+    th Price
+  = render partial: "line_items/line_item_simple", collection: @order.line_items, as: :line_item
+
+p You will receive your order via UPS in the next 3-5 buisness days.

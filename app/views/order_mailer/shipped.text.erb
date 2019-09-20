@@ -1,0 +1,8 @@
+Dear <%= "#{@order.name}" %>
+=====================================
+
+Thank you trusting The Pragmatic Store with all your educational supply needs.
+You ordered the following items:
+
+<%= render @order.line_items %>
+You'll receive your items with the next 3-5 buisness days.
