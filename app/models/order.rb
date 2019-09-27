@@ -21,16 +21,20 @@ class Order < ApplicationRecord
 
     case payment_type
     when 'Check'
+      payment_method = :check
       payment_details[:routing] = pay_type_params[:routing_number]
       payment_details[:account] = pay_type_params[:account_number]
     when 'Credit Card'
+      payment_method = :credit_card
       payment_details[:cc_num] = pay_type_params[:credit_card_number]
       payment_details[:expiration_month] = pay_type_params[:expiration_month]
       payment_details[:expiration_year] = pay_type_params[:expiration_year]
     when 'Purchase Order'
+      payment_method = :po
       payment_details[:po_num] = pay_type_params[:po_num]
     end
-    Pago.make_payment
+    order_id:, payment_method:, payment_details:
+    Pago.make_payment(order_id:, payment_method:, payment_details: )
   end
 
   private

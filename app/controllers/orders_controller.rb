@@ -34,7 +34,9 @@ class OrdersController < ApplicationController
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        OrderMailer.received(@order).deliver_now
+        ChargeOrderJob.perform_later(@order, pay_type_params.to_h)
+        ## TODO: Move to lib/Pogo.rb class for handling w/ background-task
+        # OrderMailer.received(@order).deliver_now
         format.html { redirect_to store_index_url, notice: 'Thank you for your order.' }
         format.json { render :show, status: :created, location: @order }
       else
@@ -60,12 +62,12 @@ class OrdersController < ApplicationController
   end
 
   def pay_type_params
-    if order_params[:pay_type] == 1
-      params.require(:order).permit(:credit_card_number, :expiration_date)
-    elsif order_params[:pay_type] == 2
-      params.require(:order).permit(:routing_number, :account_number)
-    elsif order_params[:pay_type] == 3
-      params.require(:order).permit(:po_number)
+    if order_params[:pay_type_id] == '1'
+      params.require(:order).permit(:pay_type_id, :routing_number, :account_number)
+    elsif order_params[:pay_type] == '2'
+      params.require(:order).permit(:pay_type_id, :credit_card_number, :expiration_date)
+    elsif order_params[:pay_type] == '3'
+      params.require(:order).permit(:pay_type_id, :po_number)
     else
       {}
     end
