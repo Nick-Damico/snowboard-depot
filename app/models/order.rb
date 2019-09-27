@@ -33,8 +33,17 @@ class Order < ApplicationRecord
       payment_method = :po
       payment_details[:po_num] = pay_type_params[:po_num]
     end
-    order_id:, payment_method:, payment_details:
-    Pago.make_payment(order_id:, payment_method:, payment_details: )
+
+    payment_result = Pago.make_payment(
+      order_id: id,
+      payment_method: payment_method,
+      payment_details: payment_details
+    )
+    if payment_result.succeeded?
+      OrderMailer.received(self).deliver_now
+    else
+      raise payment_result.error
+    end
   end
 
   private
