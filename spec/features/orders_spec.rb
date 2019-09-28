@@ -83,7 +83,7 @@ RSpec.describe 'Orders', type: :feature do
     assert_selector '#order_po_number'
   end
 
-  scenario 'check routing number', js: true do
+  scenario 'checkout with "check"', js: true do
     visit root_path
 
     # Place Order
@@ -109,6 +109,65 @@ RSpec.describe 'Orders', type: :feature do
     expect(order.address).to eq(user[:address])
     expect(order.email).to eq(user[:email])
     expect(order.pay_type.name).to eq('Check')
+
+    # Check Email was sent.
+    mail = ActionMailer::Base.deliveries.last
+    expect(mail.to.first).to eq(user[:email])
+    expect(mail.from).to eq('RailsDepotAdmin admin@rails-depot.com')
+    expect(mail.subject).to eq('Pragmatic Store Order Confirmation')
+  end
+
+  scenario 'checkout with "credit card"', js: true do
+    visit root_path
+
+    first('.catalog li').click_on('Add to Cart')
+    click_button('Checkout')
+    fill_in 'order_name', with: user[:name]
+    fill_in 'order_address', with: user[:address]
+    fill_in 'order_email', with: user[:email]
+    select('Credit Card', from: 'pay_type')
+    fill_in 'CC #', with: '1234 2341 3214 4321'
+    select('01 - January', from: 'order_expiration_month')
+    select('2024', from: 'order_expiration_year')
+
+    perform_enqueued_jobs do
+      click_button 'Place Order'
+    end
+
+    order = Order.first
+    expect(order.name).to eq(user[:name])
+    expect(order.address).to eq(user[:address])
+    expect(order.email).to eq(user[:email])
+    expect(order.pay_type.name).to eq('Credit Card')
+
+    # Check Email was sent.
+    mail = ActionMailer::Base.deliveries.last
+    expect(mail.to.first).to eq(user[:email])
+    expect(mail.from).to eq('RailsDepotAdmin admin@rails-depot.com')
+    expect(mail.subject).to eq('Pragmatic Store Order Confirmation')
+  end
+
+  scenario 'checkout with "Purchase Order"', js: true do
+    visit root_path
+
+    first('.catalog li').click_on('Add to Cart')
+    click_button('Checkout')
+    fill_in 'order_name', with: user[:name]
+    fill_in 'order_address', with: user[:address]
+    fill_in 'order_email', with: user[:email]
+    select('Purchase Order', from: 'pay_type')
+    fill_in 'PO #', with: '12343214'
+
+
+    perform_enqueued_jobs do
+      click_button 'Place Order'
+    end
+
+    order = Order.first
+    expect(order.name).to eq(user[:name])
+    expect(order.address).to eq(user[:address])
+    expect(order.email).to eq(user[:email])
+    expect(order.pay_type.name).to eq('Purchase Order')
 
     # Check Email was sent.
     mail = ActionMailer::Base.deliveries.last
