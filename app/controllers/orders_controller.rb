@@ -64,9 +64,9 @@ class OrdersController < ApplicationController
   def pay_type_params
     if order_params[:pay_type_id] == '1'
       params.require(:order).permit(:pay_type_id, :routing_number, :account_number)
-    elsif order_params[:pay_type] == '2'
-      params.require(:order).permit(:pay_type_id, :credit_card_number, :expiration_date)
-    elsif order_params[:pay_type] == '3'
+    elsif order_params[:pay_type_id] == '2'
+      params.require(:order).permit(:pay_type_id, :credit_card_number, :expiration_month, :expiration_year)
+    elsif order_params[:pay_type_id] == '3'
       params.require(:order).permit(:pay_type_id, :po_number)
     else
       {}
