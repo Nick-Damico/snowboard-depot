@@ -27,7 +27,7 @@ gem 'slim-rails', '~> 3.2'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -47,6 +47,7 @@ group :development, :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'pry'
+  gem 'rails-controller-testing'
 end
 
 group :development do
