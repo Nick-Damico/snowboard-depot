@@ -1,23 +1,27 @@
-h1 Authorized Users
+  article
+    - if flash[:notice]
+      aside id="notice" = flash[:notice]
 
-table
-  thead
-    tr
-      th Name
-      th Password
-      th
-      th
-      th
+  h1 Authorized Users
 
-  tbody
-    - @users.each do |user|
+  table
+    thead
       tr
-        td = user.name
-        td = user.password
-        td = link_to 'Show', user
-        td = link_to 'Edit', edit_user_path(user)
-        td = link_to 'Destroy', user, data: { confirm: 'Are you sure?' }, method: :delete
+        th Name
+        th Password
+        th
+        th
+        th
 
-br
+    tbody
+      - @users.each do |user|
+        tr
+          td = user.name
+          td = user.password
+          td = link_to 'Show', user
+          td = link_to 'Edit', edit_user_path(user)
+          td = link_to 'Destroy', user, data: { confirm: 'Are you sure?' }, method: :delete
 
-= link_to 'New User', new_user_path
+  br
+
+  = link_to 'New User', new_user_path

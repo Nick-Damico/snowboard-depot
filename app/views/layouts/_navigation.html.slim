@@ -15,3 +15,10 @@ nav.side_nav
     - if @cart
       li
         a href="/carts/#{@cart.id}" View Cart
+  - if session[:user_id]
+    nav.logged_in_nav
+      ul
+        li = link_to 'Orders', orders_url
+        li = link_to 'Products', products_url
+        li = link_to 'Users', users_url
+        li = button_to 'Logout', logout_url, method: :delete
