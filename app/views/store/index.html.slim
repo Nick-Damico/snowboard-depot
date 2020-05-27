@@ -1,0 +1,7 @@
+- if notice
+  aside#notice = notice
+
+h1 Your Snowboard Catalog | Views: #{@counter}
+ul.catalog
+  = cache @products
+    = render partial: 'products/product', collection: @products, cached: true
