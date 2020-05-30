@@ -12,17 +12,31 @@ RSpec.describe Product, type: :model do
   let(:product) { Product.new(valid_attributes) }
 
   context 'validations' do
-    it "is valid with title, description, image_url" do
+    it "valid with title, description, image_url" do
       expect(product).to be_valid
     end
 
-    describe 'description' do
-      it "is invalid without a description" do
+    context 'is invalid' do
+      it 'without a title' do
+        product.title = nil
+        expect(product).to_not be_valid
+        expect(product.errors[:title]).to include("can't be blank")
+      end
+
+      it "without a description" do
         product.description = nil
         expect(product).to_not be_valid
         expect(product.errors[:description]).to include("can't be blank")
       end
 
+      it 'without a image_url' do
+        product.image_url = nil
+        expect(product).to_not be_valid
+        expect(product.errors[:image_url]).to include("can't be blank")
+      end
+    end
+
+    describe 'description' do
       it 'has min character length of 10' do
         product.description = 'snowboard'
         expect(product).to_not be_valid
@@ -31,12 +45,6 @@ RSpec.describe Product, type: :model do
     end
 
     describe 'image_url' do
-      it 'is invalid without a image_url' do
-        product.image_url = nil
-        expect(product).to_not be_valid
-        expect(product.errors[:image_url]).to include("can't be blank")
-      end
-
       it 'must be of format (jpg,png,gif)' do
         product.image_url = 'snowboard.ai'
         expect(product).to_not be_valid
@@ -47,18 +55,20 @@ RSpec.describe Product, type: :model do
     end
 
     describe 'title' do
-      it 'is invalid without a title' do
-        product.title = nil
-        expect(product).to_not be_valid
-        expect(product.errors[:title]).to include("can't be blank")
-      end
-
       it 'must be unique and present' do
         expect(product).to be_valid
         product.save!
         product2 = Product.new(valid_attributes)
         expect(product2).to_not be_valid
         expect(product2.errors[:title]).to include("has already been taken")
+      end
+
+      it 'length must be > 10 characters' do
+        product.title = 'Too Short'
+        expect(product).to_not be_valid
+        expect(product.errors[:title]).to include(
+          'must be at least 10 characters'
+        )
       end
     end
 
@@ -73,6 +83,20 @@ RSpec.describe Product, type: :model do
         expect(product).to_not be_valid
         expect(product.errors[:price]).to include("must be greater than or equal to 0.01")
       end
+    end
+  end # End of context: Validations
+
+  context 'has many LineItems' do
+    let(:cart) { Cart.create! }
+    before do
+      product.save!
+      cart.line_items.create!(product_id: product.id)
+    end
+
+    it 'cannot be destroyed if referenced by a LineItem' do
+      expect{
+        product.destroy
+      }.to change(LineItem, :count).by(0).and change(Product, :count).by(0)
     end
   end
 end

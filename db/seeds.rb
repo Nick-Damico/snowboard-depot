@@ -13,7 +13,7 @@ puts 'SEEDING PRODUCTS'
 Product.create!(title: "Men's Burton Name Dropper Camber Snowboard",
   description:
     %{<p>
-      Let your riding speak for itself with the <em>Name Dropper's</em> next-generation,
+      Let your riding speak for itself with the <strong><em>Name Dropper's</em></strong> next-generation,
       park-tuned performance. Off-Axis means all of its key ingredients, from
       the edges to the poppy core profile, match the angles of your stance for
       enhanced grip, smoother takeoffs, and stomped landings. PurePop Camber
@@ -28,7 +28,7 @@ Product.create!(title: "Men's Burton Descendant Camber Snowboard",
   description:
     %{<p>
       Dominate the park while getting maximum bang for your buck with the
-      feature-packed <em>Burton Descendant</em>. True twin shaping gives it a freestyle
+      feature-packed <strong><em>Burton Descendant</em></strong>. True twin shaping gives it a freestyle
       punch, allowing you to ride in either direction with equal control. Soft
       and playful, it also steps up stability and edge control with the catch-free,
       park-tuned feel of PurePop Camber. Squeezebox Low provides a softer flex
@@ -43,7 +43,7 @@ Product.create!(title: "Men's Burton Descendant Camber Snowboard",
 Product.create!(title: "Women's Burton Rewind Camber Snowboard",
   description:
     %{<p>
-      With an extra poppy flex, the souped-up <em>Burton Rewind</em> is for riders who
+      With an extra poppy flex, the souped-up <strong><em>Burton Rewind</em></strong> is for riders who
       charge hard, and like to flaunt a freestyle attitude backed by steady park
       progression. The flat, ultra-thin, and skate-like profile improves the ride,
       thanks to Filet-O-Flex design, yet rips harder than any soft board out there.
@@ -54,5 +54,5 @@ Product.create!(title: "Women's Burton Rewind Camber Snowboard",
       </p>},
   image_url: 'wm_rewind.png',
   price: 469.95)
-  
+
 puts 'SEEDING PRODUCTS FINISHED'
