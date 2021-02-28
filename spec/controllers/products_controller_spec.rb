@@ -29,21 +29,11 @@ RSpec.describe ProductsController, type: :controller do
   # Product. As you add validations to Product, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {
-      title: 'Burton Snowboard',
-      description: 'Best all mountain board',
-      price: 10.00,
-      image_url: 'burton_board.jpg'
-    }
+    skip("Add a hash of attributes valid for your model")
   }
 
   let(:invalid_attributes) {
-    {
-      title: 'Burton Snowboard',
-      description: 'Best all mountain board',
-      price: 0,
-      image_url: 'burton_board.jpg'
-    }
+    skip("Add a hash of attributes invalid for your model")
   }
 
   # This should return the minimal set of values that should be in the session
@@ -107,19 +97,14 @@ RSpec.describe ProductsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        {
-          title: 'Womens Burton FreeStyle Snowboard',
-          description: 'Best Free Style Board',
-          price: 10.00,
-          image_url: 'wmns_burton_board.jpg'
-        }
+        skip("Add a hash of attributes valid for your model")
       }
 
       it "updates the requested product" do
         product = Product.create! valid_attributes
         put :update, params: {id: product.to_param, product: new_attributes}, session: valid_session
         product.reload
-        expect(product.title).to eq('Womens Burton FreeStyle Snowboard')
+        skip("Add assertions for updated state")
       end
 
       it "redirects to the product" do
@@ -139,27 +124,17 @@ RSpec.describe ProductsController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    before do
-      @product = Product.create! valid_attributes
-      @cart = Cart.create!
-    end
-
     it "destroys the requested product" do
+      product = Product.create! valid_attributes
       expect {
-        delete :destroy, params: {id: @product.to_param}, session: valid_session
+        delete :destroy, params: {id: product.to_param}, session: valid_session
       }.to change(Product, :count).by(-1)
     end
 
     it "redirects to the products list" do
-      delete :destroy, params: {id: @product.to_param}, session: valid_session
+      product = Product.create! valid_attributes
+      delete :destroy, params: {id: product.to_param}, session: valid_session
       expect(response).to redirect_to(products_url)
-    end
-
-    it 'cannot delete a product in a cart' do
-      @cart.line_items.create! product_id: @product.id
-      expect{
-        delete :destroy, params: { id: @product.id }, session: valid_session
-      }.to change(Product, :count).by(0)
     end
   end
 

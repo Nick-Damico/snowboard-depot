@@ -1,7 +1,0 @@
-li
-  = image_tag(product.image_url, alt: product.title)
-  h2 = product.title
-  p = sanitize(product.description, tags: %w(strong em))
-  div.price
-    = number_to_currency(product.price)
-    = button_to 'Add to cart', line_items_path(product_id: product)
