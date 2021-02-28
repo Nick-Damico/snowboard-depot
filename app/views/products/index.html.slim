@@ -1,27 +1,26 @@
 h1 Listing products
 
-table
-  thead
-    tr
-      th Title
-      th Description
-      th Image url
-      th Price
-      th
-      th
-      th
-
-  tbody
-    - @products.each do |product|
+.table-responsive
+  table.table.table-striped
+    thead
       tr
-        td = product.title
-        td = product.description
-        td = product.image_url
-        td = product.price
-        td = link_to 'Show', product
-        td = link_to 'Edit', edit_product_path(product)
-        td = link_to 'Destroy', product, data: { confirm: 'Are you sure?' }, method: :delete
+        th Title
+        th Description
+        th Image url
+        th Price
+        th span="3" Actions
 
-br
+    tbody
+      - @products.each do |product|
+        tr
+          td = product.title
+          td = product.description
+          td = product.image_url
+          td = display_price(product.price)
+          td = link_to 'Show', product, class: 'btn btn-primary btn-sml'
+          td = link_to 'Edit', edit_product_path(product), class: 'btn btn-warning btn-sml'
+          td = link_to 'Destroy', product, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger btn-sml'
 
-= link_to 'New Product', new_product_path
+  br
+hr.hr-dark
+  = link_to 'New Product', new_product_path, class: 'btn btn-success'
