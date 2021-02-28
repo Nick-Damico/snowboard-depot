@@ -8,14 +8,14 @@ h1 Listing products
         th Description
         th Image url
         th Price
-        th span="3" Actions
+      th span="3" Actions
 
     tbody
       - @products.each do |product|
         tr
           td = product.title
-          td = product.description
-          td = product.image_url
+          td = display_description(product.description, truncate: true)
+          td = image_tag(product.image_url, class: 'img-responsive', width: 100)
           td = display_price(product.price)
           td = link_to 'Show', product, class: 'btn btn-primary btn-sml'
           td = link_to 'Edit', edit_product_path(product), class: 'btn btn-warning btn-sml'
