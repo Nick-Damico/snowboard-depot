@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
-  it 'is valid with a title, price, and description' do
+  it 'is valid with a title, price, image_url and description' do
     product = build(:product)
     expect(product.title).to_not be_nil
     expect(product.description).to_not be_nil
@@ -26,10 +26,15 @@ RSpec.describe Product, type: :model do
   end
 
   it 'is invalid without a unique title' do
-    product = create(:product, title: 'Burton Board')
-    expect(product).to be_valid
-    product2 = build(:product, title: product.title)
+    product1 = create(:product, title: 'Burton Board')
+    product2 = build(:product, title: product1.title)
     expect(product2).to_not be_valid
     expect(product2.errors.messages[:title]).to include('has already been taken')
+  end
+
+  it 'is invalid with an image_url not for a JPG, GIF, or PNG image' do
+    product = build(:product, image_url: 'some_amazing.ai')
+    expect(product).to_not be_valid
+    expect(product.errors.messages[:image_url]).to include('must be a URL for a JPG, GIF or PNG image.')
   end
 end
