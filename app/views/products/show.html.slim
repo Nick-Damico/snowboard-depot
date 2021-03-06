@@ -8,6 +8,8 @@
       .caption
         h3 = @product.title
         p = display_description(@product.description)
-        div
-          => link_to 'Edit', edit_product_path(@product), class: 'btn btn-warning btn-sml'
-          =< link_to 'Back', products_path, class: 'btn btn-success btn-sml'
+        div.clearfix
+          .pull-right.pt-10 = display_price(@product.price)
+          .pull-left
+            => link_to 'Edit', edit_product_path(@product), class: 'btn btn-warning btn-sml'
+            =< link_to 'Back', products_path, class: 'btn btn-success btn-sml'
