@@ -18,5 +18,6 @@
   .form-group
     = f.label :price
     = f.text_field :price, class: 'form-control'
-  = f.submit btn_text(@product), class: 'btn btn-success'
-  =< link_to 'Cancel', products_path, class: 'btn btn-warning'
+  = f.submit btn_text(@product), class: 'btn btn--success'
+  =< link_to 'Cancel', products_path, class: 'btn btn--warning'
+
