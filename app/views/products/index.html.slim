@@ -1,26 +1,25 @@
-h1 Listing products
+h1 class="text-3xl" Listing products
 
-.table-responsive
-  table.table.table-striped
-    thead
-      tr
-        th Title
-        th Description
-        th Image url
-        th Price
-        th span="3" Actions
+table class="table-auto mb-4"
+  thead
+    tr
+      th Title
+      th Description
+      th Image url
+      th Price
+      th span="3" Actions
 
-    tbody
-      - @products.each do |product|
-        tr
-          td = product.title
-          td = display_description(product.description, truncate: true)
-          td = image_tag(product.image_url, class: 'img-responsive', width: 100)
-          td = display_price(product.price)
-          td = link_to 'Show', product, class: 'btn btn-primary btn-sml'
-          td = link_to 'Edit', edit_product_path(product), class: 'btn btn-warning btn-sml'
-          td = link_to 'Destroy', product, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger btn-sml'
+  tbody
+    - @products.each do |product|
+      tr class="#{cycle('even', 'odd')}"
+        td = product.title
+        td = display_description(product.description, truncate: true)
+        td = image_tag(product.image_url, class: 'img-responsive', width: 100)
+        td = display_price(product.price)
+        td = link_to 'Show', product, class: 'button button--sm button--success text-white'
+        td = link_to 'Edit', edit_product_path(product), class: 'button button--sm button--warning text-white'
+        td = link_to 'Destroy', product, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button button--sm button--danger text-white'
 
   br
 hr.hr-dark
-  = link_to 'New Product', new_product_path, class: 'btn btn-success'
+  = link_to 'New Product', new_product_path, class: 'button button--success text-white'
