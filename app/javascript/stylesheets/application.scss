@@ -2,7 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-
 @layer utilities {
     .button {
         @apply px-3 py-2 font-light rounded-md;
@@ -26,6 +25,10 @@
     }
     
     // BASE
+    .wrapper {
+        @apply flex mx-auto w-10/12;
+    }
+
     tr.odd {
         @apply bg-gray-100;
     }
@@ -52,7 +55,7 @@ $red-400: #F87171;
         background-color: $red-400;
         padding: 1rem !important;
         font-weight: lighter !important;
-        font-size: 1.5rem !important;
+        font-size: 1.25rem !important;
         margin-bottom: 1rem !important;
     }
 

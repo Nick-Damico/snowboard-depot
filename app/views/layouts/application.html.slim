@@ -13,14 +13,11 @@ html
   body.site
     header.main
       = image_tag('logo.svg', class: 'site_logo')
-      h1 = @page_title
-    section.content
-      nav.side_nav
-        ul
-          li: a href="/" Home
-          li: a href="/questions" Questions
-          li: a href="/news" News
-          li: a href="/contact" Contact
-      main class="container #{controller.controller_name}"
-        = yield
+    section.content.flex-1
+      div class="wrapper flex-col"
+        = yield :page_title
+        div class="flex flex-1"
+          == render 'layouts/sidebar_nav'
+          main class="container #{controller.controller_name}"
+            = yield
     footer

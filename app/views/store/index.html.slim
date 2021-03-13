@@ -1,7 +1,11 @@
-- if notice
-  aside#notice = notice
-
-h1 Your Snowboard Catalog | Views: #{@counter}
-ul.catalog
-  = cache @products
-    = render partial: 'products/product', collection: @products, cached: true
+= content_for :page_title do
+    h1.text-3xl.mb-4 Store
+div class="items-stretch flex space-x-12"
+    - @products.each do |product|
+        div class="flex flex-col"
+            .img-container.mb-auto
+                = image_tag product.image_url, class: 'mx-auto'
+            h2.text-base.py-3
+                = link_to product.title, product_path(product),
+                            class: 'text-gray-500 hover:text-gray-900'
+            span.text-sm = display_price(product.price)
