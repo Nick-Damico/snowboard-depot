@@ -15,9 +15,8 @@ html
       = image_tag('logo.svg', class: 'site_logo')
     section.content.flex-1
       div class="wrapper flex-col"
-        = yield :page_title
+        h1.text-3xl.mb-4 = @page_title
         div class="flex flex-1"
           == render 'layouts/sidebar_nav'
           main class="container #{controller.controller_name}"
             = yield
-    footer

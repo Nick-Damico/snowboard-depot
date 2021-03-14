@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
+  root 'store#index', as: 'store_index'
   get 'contacts/index'
   get 'news/index'
   get 'questions/index'
-  root 'store#index', as: 'store_index'
   # get 'store/index'
   resources :products
   # resources :line_items
