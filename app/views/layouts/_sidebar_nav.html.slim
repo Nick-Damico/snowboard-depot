@@ -3,8 +3,11 @@ nav class="border border-gray mr-12 w-64"
         li.width-full
             a href="/" class="flex flex-col hover:bg-gray-200 p-4" Home
         li.width-full
-            a href="/questions" class="flex flex-col hover:bg-gray-200 p-4" Questions
+            = link_to 'Questions', questions_index_path,
+                class: "flex flex-col hover:bg-gray-200 p-4"
         li.width-full
-            a href="/news" class="flex flex-col hover:bg-gray-200 p-4" News
+            = link_to 'News', news_index_path,
+                class: "flex flex-col hover:bg-gray-200 p-4"
         li.width-full
-            a href="/contact" class="flex flex-col hover:bg-gray-200 p-4" Contact
+            = link_to 'Contact', contacts_index_path,
+                class: "flex flex-col hover:bg-gray-200 p-4"
