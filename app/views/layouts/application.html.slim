@@ -12,7 +12,8 @@ html
 
   body.site
     header.main
-      = image_tag('logo.svg', class: 'site_logo')
+      .wrapper
+        = image_tag('logo.svg', class: 'site_logo')
     section.content.flex-1
       div class="wrapper flex-col"
         h1.text-3xl.mb-4 = @page_title
@@ -20,3 +21,4 @@ html
           == render 'layouts/sidebar_nav'
           main class="container #{controller.controller_name}"
             = yield
+    == render 'layouts/footer'
