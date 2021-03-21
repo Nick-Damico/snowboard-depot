@@ -4,13 +4,16 @@
 
 @layer utilities {
     .button {
-        @apply px-3 py-2 font-light rounded-md cursor-pointer;
+        @apply px-3 py-2 font-light rounded-md cursor-pointer inline-block;
     }
     .button--sm {
         @apply px-4 py-2 text-xs;
     }
     .button--success {
         @apply bg-green-500 hover:bg-green-400;
+    }
+    .button--action {
+        @apply bg-blue-500 hover:bg-green-400;
     }
     .button--warning {
         @apply bg-yellow-500 hover:bg-yellow-400;

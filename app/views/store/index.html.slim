@@ -1,3 +1,6 @@
+- if notice
+  p#notice class="mb-4 rounded text-center py-3 px-2 border border-gray" = notice
+
 div class="items-stretch flex space-x-12"
   - cache @products do
     - @products.each do |product|

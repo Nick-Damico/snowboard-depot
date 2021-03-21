@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
-    before_action :set_cart, only: [:show, :destroy]
+    before_action :set_cart, only: [:show, :edit, :update, :destroy]
     before_action :set_page_title, only: %i[show]
+    rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 
     def show
     end
@@ -21,5 +22,10 @@ class CartsController < ApplicationController
 
     def set_page_title
       @page_title = 'Shopping Cart'
+    end
+
+    def invalid_cart
+      logger.error "Attempt to access invalid cart #{params[:id]}"
+      redirect_to store_index_url, notice: 'Invalid cart'
     end
 end
