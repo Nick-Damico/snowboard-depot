@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   get 'news/index'
   get 'questions/index'
   # get 'store/index'
+  resources :carts
+  resources :line_items
   resources :products
-  # resources :line_items
-  # resources :carts
   # root 'store#index', as: 'store_index'
   # resources :products
   # # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

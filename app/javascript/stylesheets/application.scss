@@ -4,7 +4,7 @@
 
 @layer utilities {
     .button {
-        @apply px-3 py-2 font-light rounded-md;
+        @apply px-3 py-2 font-light rounded-md cursor-pointer;
     }
     .button--sm {
         @apply px-4 py-2 text-xs;
