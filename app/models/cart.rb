@@ -11,4 +11,8 @@ class Cart < ApplicationRecord
       end
       current_item
     end
+
+    def total_price
+      line_items.to_a.sum { |li| li.total_price }
+    end
 end

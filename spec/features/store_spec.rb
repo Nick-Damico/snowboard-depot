@@ -8,7 +8,7 @@ describe 'Shopper vists store page' do
     describe 'without login or signup' do
         it 'displays a product title and formatted price' do
             visit store_index_path
-            price_html = find("span.product_price")
+            price_html = find("tr.product-row")
             expect(page).to have_content 'Store' 
             expect(page).to have_content product.title
             expect(price_html.text).to match(/^\$\d+\.\d{2}/)

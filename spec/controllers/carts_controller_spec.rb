@@ -142,19 +142,28 @@ RSpec.describe CartsController, type: :controller do
   #   end
   # end
   #
-  # describe "DELETE #destroy" do
-  #   it "destroys the requested cart" do
-  #     cart = Cart.create! valid_attributes
-  #     expect {
-  #       delete :destroy, params: {id: cart.to_param}, session: valid_session
-  #     }.to change(Cart, :count).by(-1)
-  #   end
-  #
-  #   it "redirects to the carts list" do
-  #     cart = Cart.create! valid_attributes
-  #     delete :destroy, params: {id: cart.to_param}, session: valid_session
-  #     expect(response).to redirect_to(carts_url)
-  #   end
-  # end
-  #
+  describe "DELETE #destroy" do
+    let(:product) { create(:product) }
+    before { session[:cart_id] = create(:cart).id }
+
+    it "destroys the requested cart" do
+      expect {
+        delete :destroy, params: { id: Cart.find(session[:cart_id]) }
+      }.to change(Cart, :count).by(-1)
+    end
+
+    it 'does not destroy a cart if not the current cart in session' do
+      cart2 = create(:cart)
+      expect {
+        delete :destroy, params: { id: Cart.find(cart2.id) }
+      }.to change(Cart, :count).by(0)
+    end
+  
+    it "redirects to store index page" do
+      cart = Cart.find(session[:cart_id])
+      delete :destroy, params: { id: Cart.find(session[:cart_id]) }
+      expect(response).to redirect_to(store_index_url)
+    end
+  end
+  
 end

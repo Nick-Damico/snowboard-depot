@@ -7,17 +7,18 @@ class CartsController < ApplicationController
     end
 
     def destroy
-      if @cart.destroy
-        respond_to do |format|
-          format.html { redirect_to store_index_url, notice: 'Cart has been emptied.'}
-        end
+      @cart.destroy if @cart.id == session[:cart_id]
+      session[:cart_id] = nil
+
+      respond_to do |format|
+        format.html { redirect_to store_index_url, notice: 'Cart has been emptied.'}
       end
     end
 
     private
 
     def set_cart
-      @cart = Cart.find(params[:id])
+      @cart = Cart.includes(line_items: [:product]).find(params[:id])
     end
 
     def set_page_title

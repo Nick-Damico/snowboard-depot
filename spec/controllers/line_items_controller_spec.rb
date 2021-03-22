@@ -11,17 +11,9 @@ RSpec.describe LineItemsController, type: :controller do
     end
   end
 
-  describe "GET #show" do
+  describe "GET #new" do
     it "returns a success response" do
-      line_item = LineItem.create! valid_attributes
-      get :show, params: {id: line_item.to_param}, session: valid_session
-      expect(response).to be_successful
-    end
-  end
-
-  xdescribe "GET #new" do
-    it "returns a success response" do
-      get :new, params: {}, session: valid_session
+      get :new, params: { line_items: { product_id: product.id } }
       expect(response).to be_successful
     end
   end
@@ -36,13 +28,15 @@ RSpec.describe LineItemsController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
+      subject { post :create, params: { product_id: product.id } }
+
       it "creates a new LineItem" do
         expect {
-          post :create, params: { product_id: product.id }
+          subject
         }.to change(LineItem, :count).by(1)
       end
 
-      it "redirects to the created line_item" do
+      it "redirects to cart" do
         post :create, params: { product_id: product.id }
         expect(response).to redirect_to(assigns[:cart])
       end
