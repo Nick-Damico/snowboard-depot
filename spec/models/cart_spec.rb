@@ -18,5 +18,10 @@ RSpec.describe Cart, type: :model do
       current_item = cart.add_product(product)
       expect(current_item.quantity).to eq 2
     end
+
+    it 'stores the product price when product is added' do
+      line_item = cart.add_product(product)
+      expect(line_item.price).to_not be_nil
+    end
   end
 end

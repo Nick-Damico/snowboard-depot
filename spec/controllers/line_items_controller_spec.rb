@@ -34,6 +34,7 @@ RSpec.describe LineItemsController, type: :controller do
         expect {
           subject
         }.to change(LineItem, :count).by(1)
+        expect(assigns[:line_item].price).to eq product.price
       end
 
       it "redirects to cart" do

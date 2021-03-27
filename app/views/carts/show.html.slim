@@ -7,6 +7,7 @@ table class="table-auto mb-4"
       th Product
       th Quantity
       th Price
+      th span="3" Actions
 
   tbody
     - @cart.line_items.each do |line_item|
@@ -14,6 +15,7 @@ table class="table-auto mb-4"
         td = line_item.product.title
         td = "&times; #{line_item.quantity}".html_safe
         td = display_price(line_item.product.price)
+        td = link_to 'Remove', line_item_path(line_item), method: :delete, class: 'button button--sm button--danger text-white'
   tfoot
     tr
       th class="text-right py-4 pr-2" colspan="2" Total:
