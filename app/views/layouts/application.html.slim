@@ -14,8 +14,8 @@ html
     header.main
       .wrapper
         = image_tag('logo.svg', class: 'site_logo')
-    section.content.flex-1
-      div class="wrapper flex-col"
+    section.content.flex.flex-1
+      div class="wrapper flex-col self-stretch"
         h1.text-3xl.my-6 = @page_title
         div class="flex flex-1"
           == render partial: 'layouts/sidebar_nav', locals: { cart: @cart }

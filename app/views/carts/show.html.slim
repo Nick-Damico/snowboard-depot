@@ -1,25 +1,29 @@
 - if notice
   p#notice class="mb-4 rounded text-center py-3 px-2 border border-gray" = notice
 
-table class="table-auto mb-4"
-  thead
-    tr
-      th Product
-      th Quantity
-      th Price
-      th span="3" Actions
+- if @cart.line_items.any?
+  table class="table-auto mb-4"
+    thead
+      tr
+        th Product
+        th Quantity
+        th Price
+        th span="3" Actions
 
-  tbody
-    - @cart.line_items.each do |line_item|
-      tr class="#{cycle('even', 'odd')} product-row"
-        td = line_item.product.title
-        td = "&times; #{line_item.quantity}".html_safe
-        td = display_price(line_item.product.price)
-        td = link_to 'Remove', line_item_path(line_item), method: :delete, class: 'button button--sm button--danger text-white'
-  tfoot
-    tr
-      th class="text-right py-4 pr-2" colspan="2" Total:
-      td class="py-4 font-bold border-t border-black" = display_price(@cart.total_price)
-div
-  = link_to 'Empty Cart', cart_path(@cart), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button button--sm button--warning mt-4'
-  =< link_to 'Shopping', store_index_path, class: 'button button--sm button--success'
+    tbody
+      - @cart.line_items.each do |line_item|
+        tr class="#{cycle('even', 'odd')} product-row"
+          td = line_item.product.title
+          td = "&times; #{line_item.quantity}".html_safe
+          td = display_price(line_item.product.price)
+          td = link_to 'Remove', line_item_path(line_item), method: :delete, class: 'button button--sm button--danger text-white'
+    tfoot
+      tr
+        th class="text-right py-4 pr-2" colspan="2" Total:
+        td class="py-4 font-bold border-t border-black" = display_price(@cart.total_price)
+- else
+  h3 class="text-2xl text-gray-400" = 'Cart is Empty'
+div class="border-t pt-4"
+  - if @cart.line_items.any?
+    = link_to 'Empty Cart', cart_path(@cart), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button button--sm button--warning'
+  =< link_to 'Continue Shopping', store_index_path, class: 'button button--sm button--success'
