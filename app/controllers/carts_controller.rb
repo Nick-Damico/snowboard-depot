@@ -18,6 +18,8 @@ class CartsController < ApplicationController
     private
 
     def set_cart
+      return invalid_cart unless params[:id].to_i == session[:cart_id]
+
       @cart = Cart.includes(line_items: [:product]).find(params[:id])
     end
 
@@ -26,6 +28,7 @@ class CartsController < ApplicationController
     end
 
     def invalid_cart
+      puts "INVALID CART CALLED"
       logger.error "Attempt to access invalid cart #{params[:id]}"
       redirect_to store_index_url, notice: 'Invalid cart'
     end
